@@ -7,15 +7,8 @@
 <h1>VARDER-Forecast</h1><br>
 <div class = 'Main_content'>
 
-{{content.opportunity}}<!--generic about inflation--><br>
+{{content.message}}<!--message based on forecast--><br>
 
-{{content.action}}<br>
-{{content.bt}}
-<br>
-
-  <!-- your loss due to inflation -->
-<br>
-          <!-- what they should do {{content.advice}} -->
 <br>
 <b>ACTION </b><a href ={{content.link}}>learn more</a><br>
 </div>
@@ -31,7 +24,7 @@
 <!-- back test section  -->
 
 <!-- get input from the user  -->
-<form  action="/VARDER" method="GET"><!--action gives result page -->
+<form  action="/VARDERfc" method="GET"><!--action gives result page -->
 
 <!--  balance  input -->
 <label for="savings">Bank Balance:</label>

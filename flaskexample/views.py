@@ -30,7 +30,10 @@ def VARDERfc():
 
     # expects date, n_steps
     prev,fc_1,first_YOY = generate_forecast_1(u_args['date'],u_args['n_months'])
-    action,strategy = action_from_infl(fc_1)
+    strategy = action_from_infl(fc_1)
+
+    #message based on strategy
+    message = message_from_strategy(strategy)
 
     # integreate forecast
     # returns a list of YOY values
@@ -55,7 +58,7 @@ def VARDERfc():
     url = html_plot()
 
     # 'print' is for trouble shooting
-    dict = {'opportunity':'blah 1','action':action,'print':'','bt':u_args['date']}
+    dict = {'message':message,'print':''}
     return render_template('VARDERfc.html',content = dict,plot_url=url)
 
 

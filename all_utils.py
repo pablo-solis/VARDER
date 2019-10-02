@@ -125,12 +125,25 @@ def integrate_forecast(prev,fc,first):
 # how to interpret the inflation prediction
 # this about a third option: treasury bonds
 def action_from_infl(fc_values):
-    signal = sum(fc_values)
+    signal = np.mean(fc_values)
     # i might want to switch this...
-    if signal>0:
-        return 'VWELX','S&B'
+    if signal>0.005:
+        # rising inflation
+        return 'TIPS'
+    elif signal<-0.005:
+        # deflation
+        return 'Treasury Bonds'
     else:
-        return 'VIPSX','TIPS'
+        return 'S&B'
+def message_from_strategy(strategy):
+    # what's happening with inflation
+    temp_1 = 'Infaltion is predicted to '
+    temp_2 = 'VARDER recommends investing in '
+    temp_3 = 'Here are some examples:'
+    dd = {'TIPS':temp_1+'rise. '+temp_2+'inflation protected securities. '+temp_3,
+            'S&B':temp_1+'be relatively tame. '+temp_2+'a stock and bonds portfolio.'+temp_3,
+            'Treasury Bonds':temp_1+'fall. '+temp_2+'Treasury bonds.'+temp_3}
+    return dd[strategy]
 
 # year = 2019 and month = 08, later that will be 09
 # note the _1 means we are looking at difference
@@ -293,13 +306,18 @@ def generate_plot(df,names=['Money in a Bank','Suggested Investment'],user = {'d
     ax.legend(names+[vlabel])
 
     # set the ylim so the scale is not misleading
-    ymin = int(0.9*user['savings'])
-    ymax = int(1.1*user['savings'])
+    ymin = int(0.93*user['savings'])
+    ymax = int(1.07*user['savings'])
     ax.set_ylim([ymin,ymax])
 
-    # create a vertical line
-    # get last time stamp
-    last_x = plot_df.index[-2]
+    #x lower limit
+    # users starting date minus a few months etc
+    x_lower = pd.to_datetime(user['date'])+pd.offsets.MonthBegin(-4)
+    # only if back_test is false
+    if user['back_test']:
+        pass # for back test the lower limit gives a bad plot
+    else:
+        ax.set_xlim(left = x_lower) # set a lower limit
 
 
 
