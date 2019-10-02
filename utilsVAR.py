@@ -3,12 +3,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import nltk
 import yfinance as yf
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
+# from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import io
 import base64
 import re
 import seaborn as  sns
-import bls
+# import bls
 
 # Import Statsmodels
 from statsmodels.tsa.api import VAR
