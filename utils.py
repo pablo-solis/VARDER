@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import nltk
 import yfinance as yf
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
+# from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import io
 import base64
 import re
@@ -11,10 +11,11 @@ import  seaborn as  sns
 
 sns.set_style('darkgrid')
 
+'''
 sia = SentimentIntensityAnalyzer()
 def score_from_txt(txt, col='compound'):
     return sia.polarity_scores(txt)[col]
-
+'''
 
 def suggestion(savings, fund = 'VIPSX'):
     if savings<3000:

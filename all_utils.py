@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import nltk
 import yfinance as yf
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
+# from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import io
 import base64
 import re
@@ -15,11 +15,12 @@ from statsmodels.tsa.api import VAR
 import  seaborn as  sns
 sns.set_style('darkgrid')
 
+'''
 #-- sentiment function
 sia = SentimentIntensityAnalyzer()
 def score_from_txt(txt, col='compound'):
     return sia.polarity_scores(txt)[col]
-
+'''
 
 '''
 Table of contents
