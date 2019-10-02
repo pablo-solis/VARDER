@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>VARDER-Forecast</title>
+</head>
+<body>
+
+<h1>VARDER-Forecast</h1><br>
+<div class = 'Main_content'>
+
+{{content.opportunity}}<!--generic about inflation--><br>
+
+{{content.action}}<br>
+{{content.bt}}
+<br>
+
+  <!-- your loss due to inflation -->
+<br>
+          <!-- what they should do {{content.advice}} -->
+<br>
+<b>ACTION </b><a href ={{content.link}}>learn more</a><br>
+</div>
+
+<!-- image of their savings decaying -->
+<img src="data:image/png;base64,{{ plot_url }}"><br>
+
+
+
+
+
+<br>Test the algorithm on historical prices<br>
+<!-- back test section  -->
+
+<!-- get input from the user  -->
+<form  action="/VARDER" method="GET"><!--action gives result page -->
+
+<!--  balance  input -->
+<label for="savings">Bank Balance:</label>
+  <select name="savings">
+    <option value="3000">3,000</option>
+    <option value="5000">5,000</option>
+    <option value='10000'>10,000</option>
+    <option value ='20000'>20,000</option>
+  </select><br>
+
+<!--  time horizon  input -->
+<label for="horizon">Time  Horizon:</label>
+  <select name="horizon">
+    <option value="3months">3 months</option>
+    <option value="6months">6 months</option>
+    <option value="12months">12 months</option>
+    <option value='18months'>18 months</option>
+  </select><br>
+
+<!--  back test year  input -->
+<label for="bt_year">Year:</label>
+  <select name="bt_year">
+    <option value="2017">2017</option>
+    <option value="2016">2016</option>
+    <option value="2015">2015</option>
+    <option value="2014">2014</option>
+    <option value="2013">2013</option>
+    <option value="2012">2012</option>
+    <option value="2011">2011</option>
+    <option value="2010">2010</option>
+    <option value="2009">2009</option>
+    <option value="2008">2008</option>
+    <option value="2007">2007</option>
+    <option value="2006">2006</option>
+    <option value="2005">2005</option>
+    <option value="2004">2004</option>
+    <option value="2003">2003</option>
+                  </select><br>
+
+  <!--  back test year  input -->
+  <label for="bt_month">Month:</label>
+    <select name="bt_month">
+    <option value="01">Jan</option>
+    <option value="02">Feb</option>
+    <option value="03">Mar</option>
+    <option value="04">Apr</option>
+    <option value="05">May</option>
+    <option value="06">Jun</option>
+    <option value="07">Jul</option>
+    <option value="08">Aug</option>
+    <option value="09">Sep</option>
+    <option value="10">Oct</option>
+    <option value="11">Nov</option>
+    <option value="12">Dec</option>
+                        </select><br>
+        <!--<input type="text"  min="1" max="100" value="50" name='input_val'>
+         -->
+
+<!-- click a button --->
+<button type="submit" class="btn btn-default btn-lg">
+Back Test!
+</button>
+</form>
+
+<br>
+
+
+<a href  = "/">home</a>
+</body>
+</html>
