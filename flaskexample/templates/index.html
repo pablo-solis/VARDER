@@ -1,40 +1,97 @@
 <html>
-<head><title>NLPedia</title></head>
+<head>
+<style>
+/* This is intended to scale elements based on size of screen */
+html,body{
+height : 100%;
+}
+h1{
+margin : 0 auto;
+font-size : 7.5vw;
+}
+div{
+height : 100%;
+}
+p{
+margin : 0 auto;
+font-size : 2vw;
+}
+form{
+margin : 0 auto;
+font-size : 2vw;
+}
+button{
+margin : 0 auto;
+font-size : 2vw;
+}
+select{
+margin : 0 auto;
+font-size : 2vw;
+}
+option{
+margin : 0 auto;
+font-size : 2vw;
+}
+.center{
+  text-align: left;
+  width: 40%;
+  height: auto;
+}
+</style>
+<!-- for an only numbers input box-->
+<script>
+function isNumberKey(evt){
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    return true;
+}
+</script>
 
-<body><center>
+<title>NLPedia</title></head>
+
+<body><div>
+<center>
 
 <h1>Inflation Royale  </h1><br> <h3>Powered by NLPedia </h3><br>
 <img src = 'https://i.imgur.com/nATU5Gg.gif'>
 
-<br><br><div class = 'Main_content'>
-<!-- model text output -->
-<br>{{content.text_1}}<br><br>
-
+<br>
 <!-- get input from the user  -->
-<form  action="/VARDERfc" method="GET">
-<!--action gives result page -->
+  <div class = 'center'>
+    <!-- model text output -->
+          <p>
+          <br>{{content.text_1}}<br><br>
+          </p>
+    <form  action="/VARDERfc" method="GET">
+      <!--action gives result page -->
 
-<!--  balance  input -->
-<label for="savings">Bank Balance:</label>
-<select name="savings">
-        <option value="3000">3,000</option>
-        <option value="5000">5,000</option>
-        <option value='10000'>10,000</option>
-        <option value ='20000'>20,000</option>
-      </select><br><br>
+      <!--  balance  input -->
 
-<!--  time horizon  input -->
-<label for="horizon">Time  Horizon:</label>
-<select name="horizon">
-  <option value="3months">3 months</option>
-  <option value="6months">6 months</option>
-  <option value="12months">12 months</option>
-</select><br>
 
-<!-- click a button --->
-<button type="submit" class="btn btn-default btn-lg">
-  Forecast!
-</button>
+      <label for="savings">Bank Balance:</label>
+      <input type="number" name="savings" onkeypress="return isNumberKey(event)" />
+      <!--
+      <select name="savings">
+            <option value="3000">3,000</option>
+            <option value="5000">5,000</option>
+            <option value='10000'>10,000</option>
+            <option value ='20000'>20,000</option>
+      </select>--><br><br>
 
-</form>
+      <!--  time horizon  input -->
+      <label for="horizon">Time  Horizon:</label>
+      <select name="horizon">
+          <option value="3months">3 months</option>
+          <option value="6months">6 months</option>
+          <option value="12months">12 months</option>
+        </select><br>
+
+        <!-- click a button --->
+        <button type="submit" class="btn btn-default btn-lg">
+          Forecast!
+        </button>
+
+    </form>
+  </div>
 </center><br></div></body></html>

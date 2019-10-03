@@ -126,7 +126,7 @@ def message_from_strategy(strategy):
     # what's happening with inflation
     temp_1 = 'Infaltion is predicted to '
     temp_2 = 'VARDER recommends investing in '
-    temp_3 = 'Here are some examples:'
+    temp_3 = ' Here are some examples:'
     dd = {'TIPS':temp_1+'rise. '+temp_2+'inflation protected securities. '+temp_3,
             'S&B':temp_1+'be relatively tame. '+temp_2+'a stock and bonds portfolio.'+temp_3,
             'Treasury Bonds':temp_1+'fall. '+temp_2+'Treasury bonds.'+temp_3}
@@ -310,8 +310,11 @@ def generate_plot(df,names=['Money in a Bank','Suggested Investment'],user = {'d
     ax.legend([names[1],names[0],vlabel])
 
     # set the ylim so the scale is not misleading
-    ymin = int(0.93*user['savings'])
-    ymax = int(1.07*user['savings'])
+    # find min and max to set things appropriately
+    y_min_value = min(y1)
+    y_max_value = max(y1)
+    ymin = int(0.93*y_min_value)
+    ymax = int(1.07*y_max_value)
     ax.set_ylim([ymin,ymax])
 
     #x lower limit
