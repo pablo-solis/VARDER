@@ -15,19 +15,6 @@ from statsmodels.tsa.api import VAR
 import  seaborn as  sns
 sns.set_style('darkgrid')
 
-'''
-#-- sentiment function
-sia = SentimentIntensityAnalyzer()
-def score_from_txt(txt, col='compound'):
-    return sia.polarity_scores(txt)[col]
-'''
-
-'''
-Table of contents
-
-'''
-
-
 
 #----- handling arguments
 # intended usage:
@@ -144,6 +131,21 @@ def message_from_strategy(strategy):
             'S&B':temp_1+'be relatively tame. '+temp_2+'a stock and bonds portfolio.'+temp_3,
             'Treasury Bonds':temp_1+'fall. '+temp_2+'Treasury bonds.'+temp_3}
     return dd[strategy]
+
+# list of stocks based on strategy
+def stocks_urls(strategy):
+    SnB_list = [('VTI','https://finance.yahoo.com/quote/VTI'),('BND','https://finance.yahoo.com/quote/BND'),('FXAIX','https://finance.yahoo.com/quote/FXAIX?p=FXAIX&.tsrc=fin-srch'),('VWELX','https://finance.yahoo.com/quote/VWELX')]
+    TIPS_list = [('SCHP','https://finance.yahoo.com/quote/SCHP?p=SCHP&.tsrc=fin-srch'),('VIPSX','https://finance.yahoo.com/quote/VIPSX?p=VIPSX&.tsrc=fin-srch'),('FIPDX','https://finance.yahoo.com/quote/FIPDX?p=FIPDX&.tsrc=fin-srch'),('TDTT','https://finance.yahoo.com/quote/TDTT?p=TDTT&.tsrc=fin-srch'),('STIP',('https://finance.yahoo.com/quote/STIP?p=STIP&.tsrc=fin-srch'))]
+    T_Bond_list = [('DTYL','https://finance.yahoo.com/quote/DTYL?p=DTYL&.tsrc=fin-srch'),('DTUS','https://finance.yahoo.com/quote/DTUS?p=DTUS&.tsrc=fin-srch'),('DTYS','https://finance.yahoo.com/quote/DTYS?p=DTYS&.tsrc=fin-srch'),('EDV','https://finance.yahoo.com/quote/EDV?p=EDV&.tsrc=fin-srch')]
+
+    dd = {'TIPS':TIPS_list,'S&B':SnB_list,'Treasury Bonds':T_Bond_list}
+    return dd[strategy]
+
+def create_string_of_links(lst):
+    # list should be pairs (TIKR,url)
+    links = [f'<a href="{url}">{TIKR}</a>' for TIKR,url in lst]
+    string = ', '.join(links)
+    return string
 
 # year = 2019 and month = 08, later that will be 09
 # note the _1 means we are looking at difference
@@ -294,8 +296,9 @@ def generate_plot(df,names=['Money in a Bank','Suggested Investment'],user = {'d
 
     # make the plot
     fig,ax = plt.subplots()
-    ax.plot(x,y0)
-    ax.plot(x,y1)
+    # plot y1 first to make plot clearer
+    ax.plot(x,y1,'c') # suggested investment is below, cyan
+    ax.plot(x,y0,'b') # Money in bank is on top, blue
     # ax.plot([last_x, last_x],[ly0,ly1],'g--', lw=2)  # vertical line
     ax.vlines(last_x,ly0,ly1,colors='g',linestyles='dashed')  # vertcial line
     ax.set_title('Opportunity Gain of Investing',fontsize=30)
@@ -303,7 +306,8 @@ def generate_plot(df,names=['Money in a Bank','Suggested Investment'],user = {'d
     plt.xticks(rotation = 25)
     num = abs(ly0-ly1)
     vlabel = f'${num:.2f}'
-    ax.legend(names+[vlabel])
+    # switch order of names
+    ax.legend([names[1],names[0],vlabel])
 
     # set the ylim so the scale is not misleading
     ymin = int(0.93*user['savings'])

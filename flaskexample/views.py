@@ -35,6 +35,10 @@ def VARDERfc():
     #message based on strategy
     message = message_from_strategy(strategy)
 
+    # generate list of examples
+    lst = stocks_urls(strategy)
+    examples = create_string_of_links(lst)
+
     # integreate forecast
     # returns a list of YOY values
     fc = integrate_forecast(prev,fc_1,first_YOY)
@@ -57,8 +61,10 @@ def VARDERfc():
     generate_plot(vs_df,names = plot_names,user = u_args)
     url = html_plot()
 
+
+
     # 'print' is for trouble shooting
-    dict = {'message':message,'print':''}
+    dict = {'message':message,'print':'','examples':examples}
     return render_template('VARDERfc.html',content = dict,plot_url=url)
 
 
