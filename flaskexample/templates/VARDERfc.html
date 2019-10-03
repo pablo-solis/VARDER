@@ -1,39 +1,94 @@
 <html>
 <head>
+<style>
+/* This is intended to scale elements based on size of screen */
+html,body{
+height : 100%;
+}
+h1{
+margin : 0 auto;
+font-size : 7.5vw;
+}
+div{
+height : 100%;
+}
+p{
+margin : 0 auto;
+font-size : 2vw;
+}
+form{
+margin : 0 auto;
+font-size : 2vw;
+}
+button{
+margin : 0 auto;
+font-size : 2vw;
+}
+select{
+margin : 0 auto;
+font-size : 2vw;
+}
+a{
+margin : 0 auto;
+font-size : 2vw;
+}
+img {
+width:75%;
+height:auto;
+}
+.center{
+  text-align: left;
+  width: 65%;
+  height: auto;
+}
+</style>
+<!-- for an only numbers input box-->
+<script>
+function isNumberKey(evt){
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    return true;
+}
+</script>
+
 <title>VARDER-Forecast</title>
 </head>
 <body>
-
-<h1>VARDER-Forecast</h1><br>
-<div class = 'Main_content'>
-
-{{content.message}}<!--message based on forecast--><br>
-
-<br>
-{{content.examples|safe}}
-</div>
+<!-- center everything -->
+<center>
+  <div>
+    <h1>VARDER-Forecast</h1><br>
+    <div class = 'center'>
+        <p>
+        {{content.message|safe}}<!--message based on forecast--><br>
+        <br>
+        {{content.examples|safe}}
+        </p>
+    </div>
 
 <!-- image of their savings decaying -->
 <img src="data:image/png;base64,{{ plot_url }}"><br>
 
 
-
-
-
-<br>Test VARDER on historical prices<br>
+<br>
 <!-- back test section  -->
 
 <!-- get input from the user  -->
+<div class="center">
+  <p>Test VARDER on historical prices</p>
 <form  action="/VARDERfc" method="GET"><!--action gives result page -->
 
 <!--  balance  input -->
 <label for="savings">Bank Balance:</label>
+  <input type="number" name="savings" onkeypress="return isNumberKey(event)" />
+  <!--
   <select name="savings">
     <option value="3000">3,000</option>
     <option value="5000">5,000</option>
     <option value='10000'>10,000</option>
     <option value ='20000'>20,000</option>
-  </select><br>
+  </select>--><br>
 
 <!--  time horizon  input -->
 <label for="horizon">Time  Horizon:</label>
@@ -41,7 +96,6 @@
     <option value="3months">3 months</option>
     <option value="6months">6 months</option>
     <option value="12months">12 months</option>
-    <option value='18months'>18 months</option>
   </select><br>
 
 <!--  back test year  input -->
@@ -88,10 +142,11 @@
 Back Test!
 </button>
 </form>
-
-<br>
+</div><!-- end form div (for text aligning)-->
 
 
 <a href  = "/">home</a>
+</div>
+</center>
 </body>
 </html>
