@@ -301,7 +301,7 @@ def generate_plot(df,names=['Money in a Bank','Suggested Investment'],user = {'d
     ax.plot(x,y0,'b') # Money in bank is on top, blue
     # ax.plot([last_x, last_x],[ly0,ly1],'g--', lw=2)  # vertical line
     ax.vlines(last_x,ly0,ly1,colors='g',linestyles='dashed')  # vertcial line
-    ax.set_title('Opportunity Gain of Investing',fontsize=30)
+    ax.set_title('Opportunity Gain of Investing',fontsize=25)
     ax.set_ylabel('Purchasing Power in '+user['date']+' USD')
     plt.xticks(rotation = 25)
     num = abs(ly0-ly1)

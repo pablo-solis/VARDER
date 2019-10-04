@@ -2,17 +2,39 @@
 <head>
 <style>
 /* This is intended to scale elements based on size of screen */
+/*
 html,body{
 height : 100%;
-}
-h1{
-margin : 0 auto;
-font-size : 7.5vw;
 }
 div{
 height : 100%;
 }
-p{
+a{
+margin : 0 auto;
+font-size : 2vw;
+}
+img {
+width:50%;
+height:auto;
+max-width: 1300px;
+}
+simplify */
+h1{
+margin : 0 auto;
+font-size : 6.5vw;
+}
+
+option{
+margin : 0 auto;
+font-size : 4vw;
+height: 10vw;
+}
+select{
+margin : 0 auto;
+font-size : 2vw;
+}
+
+button{
 margin : 0 auto;
 font-size : 2vw;
 }
@@ -24,32 +46,21 @@ input{
   margin : 0 auto;
   font-size : 2vw;
 }
-select{
+p{
 margin : 0 auto;
 font-size : 2vw;
-}
-button{
-margin : 0 auto;
-font-size : 2vw;
-}
-optgroup { font-size:14px; }
-option{
-margin : 0 auto;
-font-size : 4vw;
-}
-a{
-margin : 0 auto;
-font-size : 2vw;
-}
-img {
-width:75%;
-height:auto;
 }
 .center{
   text-align: left;
   width: 65%;
   height: auto;
 }
+
+@media only screen and (max-width: 1300px) {
+            .page {
+                width: 90%;
+            }
+        }
 </style>
 <!-- for an only numbers input box-->
 <script>
@@ -96,9 +107,9 @@ function isNumberKey(evt){
 <!--  time horizon  input -->
 <label for="horizon">Time  Horizon:</label>
   <select name="horizon">
-    <option value="3months">3 months</option>
-    <option value="6months">6 months</option>
-    <option value="12months">12 months</option>
+    <option value="3months"><p>3 months</p></option>
+    <option value="6months"><p>6 months</p></option>
+    <option value="12months"><p>12 months</p></option>
   </select><br>
 
 <!--  back test year  input -->
@@ -142,13 +153,13 @@ function isNumberKey(evt){
 
 <!-- click a button --->
 <button type="submit" class="btn btn-default btn-lg">
-Back Test!
+Forecast!
 </button>
 </form>
 </div><!-- end form div (for text aligning)-->
 
 
-<a href  = "/">home</a>
+<p><a href  = "/">home</a></p>
 </div>
 </center>
 </body>
