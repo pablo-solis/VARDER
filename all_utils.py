@@ -124,7 +124,7 @@ def action_from_infl(fc_values):
         return 'S&B'
 def message_from_strategy(strategy):
     # what's happening with inflation
-    temp_1 = 'Infaltion is predicted to '
+    temp_1 = 'Inflation is predicted to '
     temp_2 = 'VARDER recommends investing in '
     temp_3 = ' Here are some examples:'
     dd = {'TIPS':temp_1+'rise. '+temp_2+'inflation protected securities. '+temp_3,
@@ -225,7 +225,7 @@ def infl_df_from_CPI(YOY_CPI_df,date = '2003-03-01'):
 def savings_vs_VARDER_from_YOY_CPI(infl_df,bt = True, which_tikr="TIPS",savings=3000):
     # infl_df has 'infl' column
     # add effect of inflation to savings over time
-    infl_df['Money in a Bank'] = savings/(1+infl_df['infl']) # infaltion decay
+    infl_df['Money in a Bank'] = savings/(1+infl_df['infl']) # inflation decay
     if bt:
         # if doing a back test VARDER col is based on historical values
         tikr_monthly = load_VWELX() if which_tikr == 'S&B' else load_VIPSX()
